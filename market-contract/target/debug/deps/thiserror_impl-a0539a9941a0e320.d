@@ -1,0 +1,12 @@
+c:\dev\near\My nft contract\market-contract\target\debug\deps\thiserror_impl-a0539a9941a0e320.dll: C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\lib.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\ast.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\attr.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\expand.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\fmt.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\generics.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\prop.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\valid.rs
+
+c:\dev\near\My nft contract\market-contract\target\debug\deps\thiserror_impl-a0539a9941a0e320.d: C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\lib.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\ast.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\attr.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\expand.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\fmt.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\generics.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\prop.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\valid.rs
+
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\lib.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\ast.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\attr.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\expand.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\fmt.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\generics.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\prop.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\thiserror-impl-1.0.31\src\valid.rs:

@@ -1,0 +1,11 @@
+c:\dev\near\My nft contract\market-contract\target\debug\deps\ed25519_dalek-f04853bab9307a1b.rmeta: C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\lib.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\constants.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\keypair.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\errors.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\public.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\secret.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\signature.rs
+
+c:\dev\near\My nft contract\market-contract\target\debug\deps\ed25519_dalek-f04853bab9307a1b.d: C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\lib.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\constants.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\keypair.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\errors.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\public.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\secret.rs C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\signature.rs
+
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\lib.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\constants.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\keypair.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\errors.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\public.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\secret.rs:
+C:\Users\bodya\.cargo\registry\src\github.com-1ecc6299db9ec823\ed25519-dalek-1.0.1\src\signature.rs:
