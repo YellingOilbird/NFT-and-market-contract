@@ -14,29 +14,23 @@ pub struct Sale {
 
 #[near_bindgen]
 impl Contract {
-    
-    //removes a sale from the market. 
+    //removes a sale from the market.
     #[payable]
     pub fn remove_sale(&mut self, nft_contract_id: AccountId, token_id: String) {
         assert_one_yocto();
-        let sale = self.internal_remove_sale(nft_contract_id.into(), token_id);
+        let sale = self.internal_remove_sale(nft_contract_id, token_id);
         let owner_id = env::predecessor_account_id();
         assert_eq!(owner_id, sale.owner_id, "Must be sale owner");
     }
 
     //updates the price for a sale on the market
     #[payable]
-    pub fn update_price(
-        &mut self,
-        nft_contract_id: AccountId,
-        token_id: String,
-        price: U128,
-    ) {
+    pub fn update_price(&mut self, nft_contract_id: AccountId, token_id: String, price: U128) {
         assert_one_yocto();
-        
-        let contract_id: AccountId = nft_contract_id.into();
+
+        let contract_id: AccountId = nft_contract_id;
         let contract_and_token_id = format!("{}{}{}", contract_id, DELIMETER, token_id);
-        
+
         let mut sale = self.sales.get(&contract_and_token_id).expect("No sale");
 
         assert_eq!(
@@ -44,7 +38,7 @@ impl Contract {
             sale.owner_id,
             "Must be sale owner"
         );
-        
+
         sale.sale_conditions = price;
         self.sales.insert(&contract_and_token_id, &sale);
     }
@@ -56,27 +50,26 @@ impl Contract {
         assert!(deposit > 0, "Attached deposit must be greater than 0");
 
         //convert the nft_contract_id from a AccountId to an AccountId
-        let contract_id: AccountId = nft_contract_id.into();
+        let contract_id: AccountId = nft_contract_id;
         let contract_and_token_id = format!("{}{}{}", contract_id, DELIMETER, token_id);
-        
+
         let sale = self.sales.get(&contract_and_token_id).expect("No sale");
-        
+
         let buyer_id = env::predecessor_account_id();
         assert_ne!(sale.owner_id, buyer_id, "Cannot bid on your own sale.");
-        
+
         let price = sale.sale_conditions.0;
 
-        assert!(deposit >= price, "Attached deposit must be greater than or equal to the current price: {:?}", price);
- 
-        self.process_purchase(
-            contract_id,
-            token_id,
-            U128(deposit),
-            buyer_id,
+        assert!(
+            deposit >= price,
+            "Attached deposit must be greater than or equal to the current price: {:?}",
+            price
         );
+
+        self.process_purchase(contract_id, token_id, U128(deposit), buyer_id);
     }
 
-    //private function used when a sale is purchased. 
+    //private function used when a sale is purchased.
     //this will remove the sale, transfer and get the payout from the nft contract, and then distribute royalties
     #[private]
     pub fn process_purchase(
@@ -95,28 +88,21 @@ impl Contract {
             .with_static_gas(GAS_FOR_NFT_TRANSFER)
             .nft_transfer_payout(
                 buyer_id.clone(), // person to transfer the NFT to
-                token_id, //token ID to transfer
+                token_id,         //token ID to transfer
                 sale.approval_id, //market contract's approval ID in order to transfer the token on behalf of the owner
-            "payout from market".to_string(),
-            price,
-            10,
-            )
-        .then(
-            Self::ext(env::current_account_id())
-            .with_static_gas(GAS_FOR_RESOLVE_PURCHASE)
-            .resolve_purchase(
-                buyer_id,
+                "payout from market".to_string(),
                 price,
+                10,
             )
-        )
+            .then(
+                Self::ext(env::current_account_id())
+                    .with_static_gas(GAS_FOR_RESOLVE_PURCHASE)
+                    .resolve_purchase(buyer_id, price),
+            )
     }
 
     #[private]
-    pub fn resolve_purchase(
-        &mut self,
-        buyer_id: AccountId,
-        price: U128,
-    ) -> U128 {
+    pub fn resolve_purchase(&mut self, buyer_id: AccountId, price: U128) -> U128 {
         let payout_option = promise_result_as_success().and_then(|value| {
             near_sdk::serde_json::from_slice::<Payout>(&value)
                 .ok()
@@ -124,14 +110,13 @@ impl Contract {
                     if payout_object.payout.len() > 10 || payout_object.payout.is_empty() {
                         env::log_str("Cannot have more than 10 royalties");
                         None
-                    
                     } else {
                         let mut remainder = price.0;
-                        
+
                         for &value in payout_object.payout.values() {
                             remainder = remainder.checked_sub(value.0)?;
                         }
-                        //Check to see if the NFT contract sent back a faulty payout that requires us to pay more or too little. 
+                        //Check to see if the NFT contract sent back a faulty payout that requires us to pay more or too little.
                         if remainder == 0 || remainder == 1 {
                             Some(payout_object.payout)
                         } else {
@@ -156,13 +141,9 @@ impl Contract {
     }
 }
 
-//cross contract call that we call on our own contract. 
+//cross contract call that we call on our own contract.
 
 #[ext_contract(ext_self)]
 trait ExtSelf {
-    fn resolve_purchase(
-        &mut self,
-        buyer_id: AccountId,
-        price: U128,
-    ) -> Promise;
+    fn resolve_purchase(&mut self, buyer_id: AccountId, price: U128) -> Promise;
 }

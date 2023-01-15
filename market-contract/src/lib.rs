@@ -3,8 +3,8 @@ use near_sdk::collections::{LookupMap, UnorderedMap, UnorderedSet};
 use near_sdk::json_types::{U128, U64};
 use near_sdk::serde::{Deserialize, Serialize};
 use near_sdk::{
-    assert_one_yocto, env, ext_contract, near_bindgen, AccountId, Balance, Gas, PanicOnDefault,
-    Promise, CryptoHash, BorshStorageKey,
+    assert_one_yocto, env, ext_contract, near_bindgen, AccountId, Balance, BorshStorageKey,
+    CryptoHash, Gas, PanicOnDefault, Promise,
 };
 use std::collections::HashMap;
 
@@ -39,17 +39,15 @@ pub type ContractAndTokenId = String;
 #[serde(crate = "near_sdk::serde")]
 pub struct Payout {
     pub payout: HashMap<AccountId, U128>,
-} 
-
+}
 
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
 pub struct Contract {
     pub owner_id: AccountId,
-    
 
     pub sales: UnorderedMap<ContractAndTokenId, Sale>,
-    
+
     pub by_owner_id: LookupMap<AccountId, UnorderedSet<ContractAndTokenId>>,
 
     pub by_nft_contract_id: LookupMap<AccountId, UnorderedSet<TokenId>>,
@@ -73,27 +71,22 @@ pub enum StorageKey {
 
 #[near_bindgen]
 impl Contract {
-
     #[init]
     pub fn initialization(owner_id: AccountId) -> Self {
-        let this = Self {
+        Self {
             owner_id,
 
             sales: UnorderedMap::new(StorageKey::Sales),
             by_owner_id: LookupMap::new(StorageKey::ByOwnerId),
             by_nft_contract_id: LookupMap::new(StorageKey::ByNFTContractId),
             storage_deposits: LookupMap::new(StorageKey::StorageDeposits),
-        };
-
-        this
+        }
     }
 
     //Allows users to deposit storage. This is to cover the cost of storing sale objects on the contract
     #[payable]
     pub fn storage_deposit(&mut self, account_id: Option<AccountId>) {
-        let storage_account_id = account_id 
-            //convert the valid account ID into an account ID
-            .map(|a| a.into())
+        let storage_account_id = account_id
             //if we didn't specify an account ID, we simply use the caller of the function
             .unwrap_or_else(env::predecessor_account_id);
 
@@ -117,7 +110,7 @@ impl Contract {
 
         let owner_id = env::predecessor_account_id();
         let mut amount = self.storage_deposits.remove(&owner_id).unwrap_or(0);
-        
+
         let sales = self.by_owner_id.get(&owner_id);
         let len = sales.map(|s| s.len()).unwrap_or_default();
         let diff = u128::from(len) * STORAGE_PER_SALE;

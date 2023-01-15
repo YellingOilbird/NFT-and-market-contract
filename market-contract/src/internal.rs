@@ -17,9 +17,12 @@ impl Contract {
         let contract_and_token_id = format!("{}{}{}", &nft_contract_id, DELIMETER, token_id);
         let sale = self.sales.remove(&contract_and_token_id).expect("No sale");
 
-        let mut by_owner_id = self.by_owner_id.get(&sale.owner_id).expect("No sale by_owner_id");
+        let mut by_owner_id = self
+            .by_owner_id
+            .get(&sale.owner_id)
+            .expect("No sale by_owner_id");
         by_owner_id.remove(&contract_and_token_id);
-        
+
         if by_owner_id.is_empty() {
             self.by_owner_id.remove(&sale.owner_id);
         } else {
@@ -30,9 +33,9 @@ impl Contract {
             .by_nft_contract_id
             .get(&nft_contract_id)
             .expect("No sale by nft_contract_id");
-        
+
         by_nft_contract_id.remove(&token_id);
-        
+
         if by_nft_contract_id.is_empty() {
             self.by_nft_contract_id.remove(&nft_contract_id);
         } else {
